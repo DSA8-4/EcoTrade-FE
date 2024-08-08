@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>상품 등록</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="productUpload.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>상품 등록</h1>
+      <form id="productForm">
+        <label for="title">상품명</label>
+        <input type="text" id="title" name="title" required />
+
+        <label for="price">가격</label>
+        <input type="number" id="price" name="price" required />
+
+        <label for="contents">상품 설명</label>
+        <textarea id="contents" name="contents" required></textarea>
+
+        <button type="submit">등록하기</button>
+      </form>
+    </div>
+    <script src="productUpload.js"></script>
+  </body>
+</html>
