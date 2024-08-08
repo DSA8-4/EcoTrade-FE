@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>회원가입</title>
+    <link rel="stylesheet" href="register.css" />
+    <script src="./register.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <h2>회원가입</h2>
+      <form id="registerForm">
+        <div class="form-group">
+          <label for="member_id">아이디</label>
+          <input type="text" id="member_id" name="member_id" required />
+        </div>
+        <div class="form-group">
+          <label for="password">패스워드</label>
+          <input type="password" id="password" name="password" required />
+        </div>
+        <div class="form-group">
+          <label for="name">닉네임</label>
+          <input type="text" id="name" name="name" required />
+        </div>
+        <div class="form-group">
+          <label for="birth">생일</label>
+          <input type="date" id="birth" name="birth" required />
+        </div>
+        <div class="form-group">
+          <label for="email">이메일</label>
+          <input type="email" id="email" name="email" required />
+        </div>
+        <button type="submit" class="btn-submit">회원가입</button>
+      </form>
+    </div>
+  </body>
+</html>
