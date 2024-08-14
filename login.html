@@ -5,13 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>로그인</title>
     <link rel="stylesheet" href="login.css" />
+    <script src="./login.js"></script>
   </head>
   <body>
     <div class="login-container">
-      <form action="/login" method="post">
-        <input type="text" name="username" placeholder="사용자 이름" required />
+      <form action="/login" method="post" id="login-container">
+        <input
+          type="text"
+          id="member_id"
+          name="username"
+          placeholder="아이디"
+          required
+        />
         <input
           type="password"
+          id="password"
           name="password"
           placeholder="비밀번호"
           required
@@ -20,7 +28,7 @@
       </form>
       <div class="register-link">
         <span>아이디가 없으십니까?</span>
-        <a href="/register">회원가입</a>
+        <a href="./register.html">회원가입</a>
       </div>
     </div>
   </body>
