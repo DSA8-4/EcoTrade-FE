@@ -67,18 +67,28 @@
   cursor: pointer;
 }
 
-.login-link {
+.login-link,
+.logout-link {
   text-decoration: none;
   color: #4b4848;
   font-weight: bold;
   margin-left: 45px;
 }
 
+.logout-link {
+  margin-left: 40px;
+  color: #4b4848;
+  font-weight: bold;
+  text-decoration: none;
+  cursor: pointer;
+
+}
+
 .register-link {
   text-decoration: none;
   color: #4b4848;
   font-weight: bold;
-  margin-left: 25px;
+  margin-left: 20px;
 }
 
 body {

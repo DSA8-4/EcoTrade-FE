@@ -54,13 +54,16 @@ function clearForm() {
 }
 
 function displayMemberInfo(member) {
-  const resultDiv = document.getElementById("register-result");
+  const resultDiv = document.createElement("div");
+  resultDiv.id = "register-result";
+
   resultDiv.innerHTML = `
     <h3>등록된 회원 정보</h3>
-    <p><strong>아이디:</strong> ${member.id}</p>
+    <p><strong>아이디:</strong> ${member.member_id}</p>
     <p><strong>패스워드:</strong> ${member.password}</p>
     <p><strong>닉네임:</strong> ${member.name}</p>
-    <p><strong>생일:</strong> ${member.birth}</p>
+    <p><strong>생일:</strong> ${member.birthday}</p>
     <p><strong>이메일:</strong> ${member.email}</p>
   `;
+  window.location.href = "http://127.0.0.1:5500/index.html";
 }
