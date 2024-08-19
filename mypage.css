@@ -9,18 +9,20 @@ body {
   display: flex;
   justify-content: center; /* 수평 중앙 정렬 */
   align-items: center; /* 수직 중앙 정렬 */
-  height: 100vh; /* 전체 화면 높이 */
+  min-height: 100vh; /* 최소 화면 높이 설정 */
 }
 
 /* 컨테이너 스타일 */
 .container {
-  width: 80%;
-  max-width: 900px;
+  width: 100%;
+  max-width: 800px; /* 컨테이너 너비 설정 */
   padding: 20px;
   background: #fff;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  transform: translateY(-10%); /* 화면 가운데에서 약간 위로 이동 */
+  box-sizing: border-box; /* 패딩을 포함한 너비 계산 */
+  overflow-y: auto; /* 컨테이너 내에서 스크롤 가능하도록 설정 */
+  max-height: 90vh; /* 최대 높이를 설정하여 스크롤 가능하도록 설정 */
 }
 
 /* 헤더 스타일 */
@@ -30,15 +32,7 @@ h1 {
   margin-bottom: 20px;
 }
 
-/* 환영 메시지 스타일 */
-#welcome-message {
-  text-align: center;
-  color: #0b5228; /* 포인트 컬러: 녹색 */
-  font-size: 30px;
-  margin-bottom: 20px;
-}
-
-/* 정보 섹션 스타일 */
+/* 정보 박스 스타일 */
 .info-box {
   background-color: #fff;
   border: 1px solid #ddd;
@@ -56,42 +50,66 @@ h1 {
 }
 
 /* 내용 스타일 */
-.info-box span {
+.info-box span,
+.info-box input {
   font-weight: normal;
   color: #555;
-  font-size: 18px;
+  font-size: 16px;
+  width: 100%; /* 입력 필드 너비 조정 */
+  box-sizing: border-box; /* 패딩을 포함한 너비 계산 */
 }
 
-/* ecoPoint 스타일 */
-#ecoPoint {
-  color: #e74c3c; /* 예: 빨간색으로 설정 */
-  font-size: 22px; /* 크기를 좀 더 크게 설정 */
-  font-weight: bold;
-}
-
-/* 녹색 포인트 컬러와 일치하는 버튼 스타일 */
+/* 버튼 스타일 */
 button {
   display: inline-block;
   padding: 10px 20px;
   font-size: 16px;
   color: #fff;
-  background-color: #27ae60;
   border: none;
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s ease;
+  margin-top: 10px; /* 버튼 위쪽 여백 추가 */
 }
 
 button:hover {
   background-color: #219150;
 }
 
-/* 링크 스타일 */
-a {
-  color: #27ae60;
-  text-decoration: none;
+/* 수정 버튼 스타일 */
+#editProfileButton {
+  background-color: #3498db;
 }
 
-a:hover {
-  text-decoration: underline;
+#editProfileButton:hover {
+  background-color: #2980b9;
+}
+
+/* 저장 버튼 스타일 */
+#saveProfileButton {
+  background-color: #2ecc71;
+}
+
+#saveProfileButton:hover {
+  background-color: #27ae60;
+}
+
+/* 취소 버튼 스타일 */
+#cancelProfileButton {
+  background-color: #e74c3c;
+  margin-left: 10px;
+}
+
+#cancelProfileButton:hover {
+  background-color: #c0392b;
+}
+
+/* 비밀번호 수정 필드 스타일 */
+#updatePassword {
+  margin-top: 20px; /* 비밀번호 수정 필드와 다른 정보 간격 조정 */
+}
+
+/* 수정 폼 스타일 */
+.info-box input {
+  margin-bottom: 10px; /* 입력 필드 사이 간격 조정 */
 }
