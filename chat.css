@@ -1,37 +1,98 @@
-/* styles.css */
-
 body {
   font-family: Arial, sans-serif;
+  background-color: #f5f5f5;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.container {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 400px;
 }
 
 h2 {
-  margin-bottom: 10px;
+  margin-bottom: 20px;
+  color: #333;
+  text-align: center;
 }
 
-#room-name {
-  margin-bottom: 10px;
+.room-creation,
+.message-input {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+#room-name,
+#sender,
+#message {
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  flex: 1;
+}
+
+#room-name,
+#sender {
+  width: 30%;
+}
+
+#message {
+  width: 60%;
 }
 
 #rooms {
   margin-bottom: 10px;
+  max-height: 100px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  padding: 10px;
+  border-radius: 4px;
+}
+
+.room-list {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
 }
 
 #chat-box {
-  border: 1px solid #000;
+  border: 1px solid #ddd;
   padding: 10px;
   height: 200px;
-  overflow: auto;
-  margin-bottom: 10px;
+  overflow-y: auto;
+  margin-bottom: 20px;
+  border-radius: 4px;
+  background-color: #f9f9f9;
 }
 
-#sender {
-  width: 100px;
+.message-input {
+  display: flex;
+  gap: 10px;
+  align-items: center;
 }
 
-#message {
-  width: 300px;
+.btn {
+  padding: 10px 15px;
+  background-color: #4caf50;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+  opacity: 0.9;
 }
 
 button {
-  margin-top: 10px;
+  flex: 0 0 auto;
 }
