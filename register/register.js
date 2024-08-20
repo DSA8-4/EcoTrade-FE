@@ -20,6 +20,7 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 function registerMember(member) {
+  console.log(member);
   fetch("http://localhost:8090/members/register", {
     method: "POST",
     headers: {
@@ -65,5 +66,5 @@ function displayMemberInfo(member) {
     <p><strong>생일:</strong> ${member.birthday}</p>
     <p><strong>이메일:</strong> ${member.email}</p>
   `;
-  window.location.href = "http://127.0.0.1:5500/index.html";
+  window.location.href = "http://127.0.0.1:5500";
 }

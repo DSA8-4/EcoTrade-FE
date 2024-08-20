@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // 로그인 상태를 확인하는 함수
   function checkLoginStatus() {
-    const isLoggedIn = sessionStorage.getItem("isLoggedIn");
+    // const isLoggedIn = sessionStorage.getItem("isLoggedIn");
     const loggedInUser = sessionStorage.getItem("loggedInUser");
     const userInfo = document.querySelector(".user-info"); // 사용자 정보 영역
 
@@ -34,23 +34,21 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   // 로그인 버튼 클릭 시
-  if (loginButton) {
-    loginButton.addEventListener("click", function () {
-      // const userId = "member_id"; // 실제 사용자 ID를 가져오는 로직 필요
-      sessionStorage.setItem("isLoggedIn", "true"); // 로그인 상태 설정
-      sessionStorage.setItem("loggedInUser", userId); // 사용자 ID 저장
-      checkLoginStatus(); // 로그인 상태 재확인
-    });
-  }
+  // if (loginButton) {
+  //   loginButton.addEventListener("click", function () {
+  //     // const userId = "member_id"; // 실제 사용자 ID를 가져오는 로직 필요
+  //     sessionStorage.setItem("loggedInUser", userId); // 사용자 ID 저장
+  //     checkLoginStatus(); // 로그인 상태 재확인
+  //   });
+  // }
 
-  // 로그아웃 버튼 클릭 시
-  if (logoutButton) {
-    logoutButton.addEventListener("click", function () {
-      sessionStorage.removeItem("isLoggedIn"); // 세션에서 로그인 상태 제거
-      sessionStorage.removeItem("loggedInUser"); // 세션에서 사용자 ID 제거
-      checkLoginStatus(); // 로그인 상태 재확인
-    });
-  }
+  // // 로그아웃 버튼 클릭 시
+  // if (logoutButton) {
+  //   logoutButton.addEventListener("click", function () {
+  //     sessionStorage.removeItem("loggedInUser"); // 세션에서 사용자 ID 제거
+  //     checkLoginStatus(); // 로그인 상태 재확인
+  //   });
+  // }
 
   // 페이지 로드 시 로그인 상태 확인
   checkLoginStatus();

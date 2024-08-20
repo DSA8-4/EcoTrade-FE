@@ -67,7 +67,7 @@ $(document).ready(function () {
       success: function (response) {
         console.log("상품이 성공적으로 수정되었습니다:", response);
         alert("상품이 성공적으로 수정되었습니다.");
-        window.location.href = "productList.html"; // 상품 목록 페이지로 이동
+        window.location.href = "productList"; // 상품 목록 페이지로 이동
       },
       error: function (xhr, status, error) {
         console.error("상품 수정 실패:", error);
