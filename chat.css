@@ -1,0 +1,37 @@
+/* styles.css */
+
+body {
+  font-family: Arial, sans-serif;
+}
+
+h2 {
+  margin-bottom: 10px;
+}
+
+#room-name {
+  margin-bottom: 10px;
+}
+
+#rooms {
+  margin-bottom: 10px;
+}
+
+#chat-box {
+  border: 1px solid #000;
+  padding: 10px;
+  height: 200px;
+  overflow: auto;
+  margin-bottom: 10px;
+}
+
+#sender {
+  width: 100px;
+}
+
+#message {
+  width: 300px;
+}
+
+button {
+  margin-top: 10px;
+}
