@@ -1,0 +1,97 @@
+/* 전체적인 스타일 설정 */
+body {
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+  background-color: #f4f4f4;
+  color: #333;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center; /* 수평 중앙 정렬 */
+  align-items: center; /* 수직 중앙 정렬 */
+  height: 100vh; /* 전체 화면 높이 */
+}
+
+/* 컨테이너 스타일 */
+.container {
+  width: 80%;
+  max-width: 900px;
+  padding: 20px;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transform: translateY(-10%); /* 화면 가운데에서 약간 위로 이동 */
+}
+
+/* 헤더 스타일 */
+h1 {
+  text-align: center;
+  color: #2c3e50;
+  margin-bottom: 20px;
+}
+
+/* 환영 메시지 스타일 */
+#welcome-message {
+  text-align: center;
+  color: #0b5228; /* 포인트 컬러: 녹색 */
+  font-size: 30px;
+  margin-bottom: 20px;
+}
+
+/* 정보 섹션 스타일 */
+.info-box {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 15px;
+  margin-bottom: 15px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* 제목 스타일 */
+.info-box strong {
+  display: block;
+  color: #27ae60; /* 포인트 컬러: 녹색 */
+  margin-bottom: 5px;
+}
+
+/* 내용 스타일 */
+.info-box span {
+  font-weight: normal;
+  color: #555;
+  font-size: 18px;
+}
+
+/* ecoPoint 스타일 */
+#ecoPoint {
+  color: #e74c3c; /* 예: 빨간색으로 설정 */
+  font-size: 22px; /* 크기를 좀 더 크게 설정 */
+  font-weight: bold;
+}
+
+/* 녹색 포인트 컬러와 일치하는 버튼 스타일 */
+button {
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 16px;
+  color: #fff;
+  background-color: #27ae60;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #219150;
+}
+
+/* 링크 스타일 */
+a {
+  color: #27ae60;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
