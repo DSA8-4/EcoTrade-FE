@@ -23,6 +23,8 @@ body {
   box-sizing: border-box; /* 패딩을 포함한 너비 계산 */
   overflow-y: auto; /* 컨테이너 내에서 스크롤 가능하도록 설정 */
   max-height: 90vh; /* 최대 높이를 설정하여 스크롤 가능하도록 설정 */
+  display: flex;
+  flex-direction: column; /* 컨텐츠를 세로로 배치 */
 }
 
 /* 헤더 스타일 */
@@ -112,4 +114,20 @@ button:hover {
 /* 수정 폼 스타일 */
 .info-box input {
   margin-bottom: 10px; /* 입력 필드 사이 간격 조정 */
+}
+
+/* 회원탈퇴 버튼 컨테이너 */
+.delete-account-container {
+  margin-top: auto; /* 최하단에 배치 */
+  text-align: center; /* 중앙 정렬 */
+}
+
+/* 회원탈퇴 버튼 */
+#deleteAccountButton {
+  background-color: #e74c3c;
+  width: auto;
+}
+
+#deleteAccountButton:hover {
+  background-color: #c0392b;
 }
