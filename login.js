@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 function loginMember(loginData) {
-  fetch("http://localhost:8090/api/members/login", {
+  fetch("http://localhost:8090/members/login", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

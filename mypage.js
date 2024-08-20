@@ -1,6 +1,6 @@
 // 로그인 상태 확인 및 사용자 정보 요청
 function checkLoginStatus() {
-  fetch("http://localhost:8090/api/members/mypage", {
+  fetch("http://localhost:8090/members/mypage", {
     method: "GET",
   })
     .then((response) => {
@@ -69,7 +69,7 @@ document.getElementById("saveProfileButton").addEventListener("click", () => {
 
   // 사용자 정보 업데이트 요청
   fetch(
-    `http://localhost:8090/api/members/${
+    `http://localhost:8090/members/${
       document.getElementById("member_id").textContent
     }`,
     {
@@ -152,7 +152,7 @@ document
 
     // 비밀번호 업데이트 요청
     fetch(
-      `http://localhost:8090/api/members/password/${
+      `http://localhost:8090/members/password/${
         document.getElementById("member_id").textContent
       }`,
       {
@@ -206,7 +206,7 @@ document.getElementById("deleteAccountButton").addEventListener("click", () => {
 function deleteAccount(inputPassword) {
   const memberId = document.getElementById("member_id").textContent;
 
-  fetch(`http://localhost:8090/api/members/${memberId}`, {
+  fetch(`http://localhost:8090/members/${memberId}`, {
     method: "DELETE",
     headers: {
       "Content-Type": "application/json",
