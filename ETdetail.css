@@ -1,0 +1,150 @@
+/* 기본 스타일 초기화 */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif;
+}
+
+/* 전체 스타일 설정 */
+body {
+  background-color: #f4f4f4;
+  color: #333;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif;
+  position: relative; /* 오버레이를 위한 상대적 위치 설정 */
+}
+
+.logo {
+  margin-right: 2.5rem;
+}
+
+.main-nav ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+}
+
+.main-nav li {
+  margin-right: 20px;
+}
+
+.main-nav a {
+  text-decoration: none;
+  color: #4d4d4d;
+  font-weight: bold;
+}
+
+.search input {
+  padding: 0.9rem 25px;
+  background-color: #e9ecef;
+  border: none;
+  border-radius: 0.6rem;
+  margin-right: 8px;
+}
+
+/* Hero 섹션 스타일 */
+.hero {
+  background-image: url(./images/Ecobackground.jpg);
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  position: relative;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(46, 154, 78, 0.6); /* 투명도가 있는 녹색 오버레이 */
+  z-index: 1; /* 오버레이가 콘텐츠 위에 있도록 설정 */
+}
+
+.hero-content {
+  position: relative;
+  max-width: 800px;
+  padding: 20px;
+  color: #ffffff;
+  z-index: 2; /* 콘텐츠가 오버레이 위에 있도록 설정 */
+}
+
+.subtitle {
+  font-size: 1.5rem;
+  margin-bottom: -8px;
+}
+
+h1 {
+  font-size: 3rem;
+  margin-bottom: 20px;
+  color: #1a5c4e; /* 제목을 하얀색으로 설정 */
+}
+
+/* 컨테이너 및 박스 스타일 */
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 1rem;
+  position: relative;
+  z-index: 2;
+}
+
+.box {
+  background: rgba(255, 255, 255, 0.9); /* 박스 배경에 더 높은 투명도 적용 */
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+
+.box .content {
+  background: #fff; /* 글자에 배경색 추가 */
+  padding: 1rem; /* 글자와 배경색 간의 여백을 추가 */
+  border-radius: 4px; /* 배경색의 모서리 둥글게 처리 */
+}
+
+h2 {
+  color: #4caf50; /* 제목 색상 수정 */
+  margin-top: 0;
+}
+
+p {
+  margin: 0 0 1rem;
+  color: #333; /* 본문 텍스트를 더 어두운 색으로 설정 */
+}
+
+.image-placeholder {
+  width: 100%;
+  height: 200px;
+  background-color: #ddd;
+  margin: 1rem 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #666;
+  font-size: 1.2rem;
+}
+
+.sns {
+  color: #1a5c4e;
+}
+
+footer {
+  background: #333;
+  color: #fff;
+  text-align: center;
+  padding: 1rem;
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+  z-index: 2;
+}
