@@ -1,3 +1,34 @@
+const firebaseConfig = {
+  apiKey: "AIzaSyBwKhnKeIKEmiti6_qZyvlX6KTIWj6x3Y4",
+  authDomain: "ecotrade-530ef.firebaseapp.com",
+  projectId: "ecotrade-530ef",
+  storageBucket: "ecotrade-530ef.appspot.com",
+  messagingSenderId: "1073791213680",
+  appId: "1:1073791213680:web:2cfebc38ed5d5c7b8854b5",
+  measurementId: "G-9698DKM279",
+};
+
+// Initialize Firebase
+let filename;
+let fileItem;
+const app = firebase.initializeApp(firebaseConfig);
+const uploadImage = () => {
+  const storageRef = firebase.storage().ref("images/" + filename);
+  const uploadTask = storageRef.put(fileItem);
+  uploadTask.on(
+    "state_changed",
+    (snapshot) => {},
+    (error) => {
+      console.log(error);
+    },
+    () => {
+      uploadTask.snapshot.ref.getDownloadURL().then((url) => {
+        console.log("URL", url);
+      });
+    }
+  );
+};
+
 $(document).ready(function () {
   $("#productForm").on("submit", function (e) {
     e.preventDefault(); // 기본 폼 제출 방지
@@ -10,6 +41,8 @@ $(document).ready(function () {
 
     // 파일 추가
     var files = $("#files")[0].files; // 파일 입력 요소에서 파일들 가져오기
+    fileItem = files;
+    filename = files.name;
     for (var i = 0; i < files.length; i++) {
       formData.append("files", files[i]); // FormData에 파일 추가
     }
@@ -23,9 +56,11 @@ $(document).ready(function () {
       processData: false, // jQuery가 데이터를 자동으로 처리하지 않게 함
       success: function (response) {
         console.log("상품이 성공적으로 등록되었습니다:", response);
+        console.log(e.target.files[0], files);
         alert("상품이 성공적으로 등록되었습니다.");
         $("#productForm")[0].reset(); // 폼 리셋
         $("#imagePreview").empty(); // 이미지 미리보기 초기화
+        uploadImage();
       },
       error: function (xhr, status, error) {
         console.error("상품 등록 실패:", error);
