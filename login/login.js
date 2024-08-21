@@ -39,8 +39,8 @@ function loginMember(loginData) {
       } catch (error) {
         data = { message: text };
       }
-      console.log("로그인 응답:", data);
-      if (data.message === "로그인 성공") {
+      console.log("로그인 응답:", data, data.success);
+      if (data.success) {
         alert("로그인되었습니다.");
         clearForm();
         handleLoginSuccess(loginData);

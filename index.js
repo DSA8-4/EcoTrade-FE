@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const loggedInUser = sessionStorage.getItem("loggedInUser");
     const userInfo = document.querySelector(".user-info"); // 사용자 정보 영역
 
-    if (isLoggedIn) {
+    if (loggedInUser) {
       // 로그인 상태일 때
       if (loginButton) loginButton.style.display = "none"; // 로그인 버튼 숨기기
       if (logoutButton) logoutButton.style.display = "inline"; // 로그아웃 버튼 보이기
@@ -43,12 +43,12 @@ document.addEventListener("DOMContentLoaded", function () {
   // }
 
   // // 로그아웃 버튼 클릭 시
-  // if (logoutButton) {
-  //   logoutButton.addEventListener("click", function () {
-  //     sessionStorage.removeItem("loggedInUser"); // 세션에서 사용자 ID 제거
-  //     checkLoginStatus(); // 로그인 상태 재확인
-  //   });
-  // }
+  if (logoutButton) {
+    logoutButton.addEventListener("click", function () {
+      sessionStorage.removeItem("loggedInUser"); // 세션에서 사용자 ID 제거
+      checkLoginStatus(); // 로그인 상태 재확인
+    });
+  }
 
   // 페이지 로드 시 로그인 상태 확인
   checkLoginStatus();
