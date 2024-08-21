@@ -1,32 +1,56 @@
-const firebaseConfig = {
-  apiKey: "AIzaSyBwKhnKeIKEmiti6_qZyvlX6KTIWj6x3Y4",
-  authDomain: "ecotrade-530ef.firebaseapp.com",
-  projectId: "ecotrade-530ef",
-  storageBucket: "ecotrade-530ef.appspot.com",
-  messagingSenderId: "1073791213680",
-  appId: "1:1073791213680:web:2cfebc38ed5d5c7b8854b5",
-  measurementId: "G-9698DKM279",
+import { initializeApp } from "https://www.gstatic.com/firebasejs/9.1.1/firebase-app.js";
+import {
+  getStorage,
+  ref,
+  uploadBytesResumable,
+  getDownloadURL,
+} from "https://www.gstatic.com/firebasejs/9.1.1/firebase-storage.js";
+import { firebaseConfig } from "../config.js";
+
+const app = initializeApp(firebaseConfig);
+const storage = getStorage(app);
+
+let fileItems = [];
+
+document
+  .getElementById("files")
+  .addEventListener("change", (e) => changeImage(e));
+
+const uploadImages = () => {
+  const uploadPromises = fileItems.map((fileItem) => {
+    const storageRef = ref(storage, "images/" + fileItem.name);
+    const uploadTask = uploadBytesResumable(storageRef, fileItem);
+
+    return new Promise((resolve, reject) => {
+      uploadTask.on(
+        "state_changed",
+        (snapshot) => {},
+        (error) => {
+          console.error("Upload failed:", error);
+          reject(error);
+        },
+        () => {
+          getDownloadURL(uploadTask.snapshot.ref).then((url) => {
+            console.log("File available at", url);
+            resolve(url);
+          });
+        }
+      );
+    });
+  });
+
+  Promise.all(uploadPromises)
+    .then((urls) => {
+      console.log("All files uploaded. URLs:", urls);
+    })
+    .catch((error) => {
+      console.error("Error uploading files:", error);
+    });
 };
 
-// Initialize Firebase
-let filename;
-let fileItem;
-const app = firebase.initializeApp(firebaseConfig);
-const uploadImage = () => {
-  const storageRef = firebase.storage().ref("images/" + filename);
-  const uploadTask = storageRef.put(fileItem);
-  uploadTask.on(
-    "state_changed",
-    (snapshot) => {},
-    (error) => {
-      console.log(error);
-    },
-    () => {
-      uploadTask.snapshot.ref.getDownloadURL().then((url) => {
-        console.log("URL", url);
-      });
-    }
-  );
+const changeImage = (e) => {
+  fileItems = Array.from(e.target.files);
+  console.log("Selected files:", fileItems);
 };
 
 $(document).ready(function () {
@@ -39,36 +63,34 @@ $(document).ready(function () {
     formData.append("contents", $("#contents").val());
     formData.append("price", parseInt($("#price").val()));
 
-    // 파일 추가
     var files = $("#files")[0].files; // 파일 입력 요소에서 파일들 가져오기
-    fileItem = files;
-    filename = files.name;
+
+    console.log(files[0]);
     for (var i = 0; i < files.length; i++) {
       formData.append("files", files[i]); // FormData에 파일 추가
     }
-
+    uploadImages();
     // AJAX 요청
-    $.ajax({
-      url: "http://localhost:8090/products/new",
-      type: "POST",
-      data: formData,
-      contentType: false, // jQuery가 자동으로 Content-Type을 설정하게 함
-      processData: false, // jQuery가 데이터를 자동으로 처리하지 않게 함
-      success: function (response) {
-        console.log("상품이 성공적으로 등록되었습니다:", response);
-        console.log(e.target.files[0], files);
-        alert("상품이 성공적으로 등록되었습니다.");
-        $("#productForm")[0].reset(); // 폼 리셋
-        $("#imagePreview").empty(); // 이미지 미리보기 초기화
-        uploadImage();
-      },
-      error: function (xhr, status, error) {
-        console.error("상품 등록 실패:", error);
-        console.error("상태:", status);
-        console.error("응답:", xhr.responseText); // 에러 메시지 출력
-        alert("상품 등록에 실패했습니다. 다시 시도해주세요.");
-      },
-    });
+    // $.ajax({
+    //   url: "http://localhost:8090/products/new",
+    //   type: "POST",
+    //   data: formData,
+    //   contentType: false, // jQuery가 자동으로 Content-Type을 설정하게 함
+    //   processData: false, // jQuery가 데이터를 자동으로 처리하지 않게 함
+    //   success: function (response) {
+    //     console.log("상품이 성공적으로 등록되었습니다:", response);
+    //     alert("상품이 성공적으로 등록되었습니다.");
+    //     $("#productForm")[0].reset(); // 폼 리셋
+    //     $("#imagePreview").empty(); // 이미지 미리보기 초기화
+
+    //   },
+    //   error: function (xhr, status, error) {
+    //     console.error("상품 등록 실패:", error);
+    //     console.error("상태:", status);
+    //     console.error("응답:", xhr.responseText); // 에러 메시지 출력
+    //     alert("상품 등록에 실패했습니다. 다시 시도해주세요.");
+    //   },
+    // });
   });
 
   // 가격 입력 필드에 숫자만 입력되도록 처리
