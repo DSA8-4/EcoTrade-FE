@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>거래내역</title>
+    <link rel="stylesheet" href="./history.css" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <h1><i id="icon1" class="material-icons">history</i>거래내역</h1>
+      </header>
+
+      <section class="transaction-section">
+        <h2><i class="material-icons">local_mall</i>구매 목록</h2>
+        <div class="transaction-list">
+          <!-- 구매 목록 항목 -->
+          <div class="transaction-item">
+            <div class="item-info">
+              <span class="item-name">상품 A</span>
+              <span class="item-price">₩20,000</span>
+            </div>
+            <span class="item-status status-on-sale">판매중</span>
+          </div>
+          <div class="transaction-item">
+            <div class="item-info">
+              <span class="item-name">상품 B</span>
+              <span class="item-price">₩15,000</span>
+            </div>
+            <span class="item-status status-in-progress">거래중</span>
+          </div>
+          <div class="transaction-item">
+            <div class="item-info">
+              <span class="item-name">상품 C</span>
+              <span class="item-price">₩30,000</span>
+            </div>
+            <span class="item-status status-completed">거래완료</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="transaction-section">
+        <h2><i class="material-icons">sell</i>판매 목록</h2>
+        <div class="transaction-list">
+          <!-- 판매 목록 항목 -->
+          <div class="transaction-item">
+            <div class="item-info">
+              <span class="item-name">상품 X</span>
+              <span class="item-price">₩25,000</span>
+            </div>
+            <span class="item-status status-on-sale">판매중</span>
+          </div>
+          <div class="transaction-item">
+            <div class="item-info">
+              <span class="item-name">상품 Y</span>
+              <span class="item-price">₩18,000</span>
+            </div>
+            <span class="item-status status-in-progress">거래중</span>
+          </div>
+          <div class="transaction-item">
+            <div class="item-info">
+              <span class="item-name">상품 Z</span>
+              <span class="item-price">₩40,000</span>
+            </div>
+            <span class="item-status status-completed">거래완료</span>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- 네비게이션 버튼들 -->
+    <div class="navigation-buttons">
+      <a href="/" class="nav-button">메인으로</a>
+      <a href="/mypage/index.html" class="nav-button">마이페이지</a>
+    </div>
+  </body>
+</html>
