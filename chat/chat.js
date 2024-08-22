@@ -1,6 +1,7 @@
 var socket = new SockJS("http://localhost:8090/chat-websocket");
 var stompClient = Stomp.over(socket);
 var currentRoom = null;
+var userEntered = false;
 
 document.addEventListener("DOMContentLoaded", function () {
   fetch("http://localhost:8090/chat/rooms")
@@ -59,6 +60,9 @@ function joinRoom(room) {
 function sendMessage() {
   var sender = document.getElementById("sender").value;
   var content = document.getElementById("message").value;
+  if (!userEntered) {
+    userEntered = true; // Mark the user as entered
+  }
   stompClient.send(
     "/pub/chat/send/" + currentRoom,
     {},
@@ -70,6 +74,15 @@ function sendMessage() {
 function showMessage(message) {
   var chatBox = document.getElementById("chat-box");
   var messageElement = document.createElement("div");
+
+  messageElement.className = "message";
+  var userName = document.getElementById("sender").value;
+  if (userName === message.sender) {
+    messageElement.classList.add("right");
+  } else {
+    messageElement.classList.add("left");
+  }
+
   messageElement.innerHTML =
     "<strong>" +
     message.sender +
