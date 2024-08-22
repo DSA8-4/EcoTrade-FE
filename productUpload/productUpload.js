@@ -16,6 +16,11 @@ document
   .getElementById("files")
   .addEventListener("change", (e) => changeImage(e));
 
+const changeImage = (e) => {
+  fileItems = Array.from(e.target.files);
+  console.log("Selected files:", fileItems);
+};
+
 const uploadImages = () => {
   const uploadPromises = fileItems.map((fileItem) => {
     const storageRef = ref(storage, "images/" + fileItem.name);
@@ -48,25 +53,20 @@ const uploadImages = () => {
     });
 };
 
-const changeImage = (e) => {
-  fileItems = Array.from(e.target.files);
-  console.log("Selected files:", fileItems);
-};
-
 $(document).ready(function () {
   $("#productForm").on("submit", function (e) {
     e.preventDefault(); // 기본 폼 제출 방지
 
     // FormData 객체 생성
-    var formData = new FormData();
+    let formData = new FormData();
     formData.append("title", $("#title").val());
     formData.append("contents", $("#contents").val());
     formData.append("price", parseInt($("#price").val()));
 
-    var files = $("#files")[0].files; // 파일 입력 요소에서 파일들 가져오기
+    let files = $("#files")[0].files; // 파일 입력 요소에서 파일들 가져오기
 
     console.log(files[0]);
-    for (var i = 0; i < files.length; i++) {
+    for (let i = 0; i < files.length; i++) {
       formData.append("files", files[i]); // FormData에 파일 추가
     }
     uploadImages();
@@ -100,7 +100,7 @@ $(document).ready(function () {
 
   // 글자 수 제한 (상품명: 30자, 상품 설명: 제한 없음)
   $("#title").on("input", function () {
-    var maxLength = 30;
+    let maxLength = 30;
     if (this.value.length > maxLength) {
       this.value = this.value.slice(0, maxLength);
     }
@@ -109,17 +109,17 @@ $(document).ready(function () {
   // 이미지 미리보기 기능
   $("#files").on("change", function (e) {
     $("#imagePreview").empty(); // 기존 미리보기 삭제
-    var files = e.target.files;
-    for (var i = 0; i < files.length; i++) {
-      var file = files[i];
+    let files = e.target.files;
+    for (let i = 0; i < files.length; i++) {
+      let file = files[i];
       if (!file.type.startsWith("image/")) {
         continue;
       } // 이미지 파일만 처리
 
-      var reader = new FileReader();
+      let reader = new FileReader();
       reader.onload = (function (file) {
         return function (e) {
-          var img = $("<img>")
+          let img = $("<img>")
             .attr("src", e.target.result)
             .css("max-width", "100px")
             .css("max-height", "100px")
