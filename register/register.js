@@ -20,7 +20,6 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 function registerMember(member) {
-  console.log(member);
   fetch("http://localhost:8090/members/register", {
     method: "POST",
     headers: {
