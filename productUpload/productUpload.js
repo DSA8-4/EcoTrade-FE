@@ -44,53 +44,43 @@ const uploadImages = () => {
     });
   });
 
-  Promise.all(uploadPromises)
-    .then((urls) => {
-      console.log("All files uploaded. URLs:", urls);
-    })
-    .catch((error) => {
-      console.error("Error uploading files:", error);
-    });
+  return Promise.all(uploadPromises);
 };
 
 $(document).ready(function () {
-  $("#productForm").on("submit", function (e) {
-    e.preventDefault(); // 기본 폼 제출 방지
+  $("#productForm").on("submit", async function (e) {
+    e.preventDefault();
 
-    // FormData 객체 생성
-    let formData = new FormData();
-    formData.append("title", $("#title").val());
-    formData.append("contents", $("#contents").val());
-    formData.append("price", parseInt($("#price").val()));
+    try {
+      const imageUrls = await uploadImages();
+      console.log("All files uploaded. URLs:", imageUrls);
 
-    let files = $("#files")[0].files; // 파일 입력 요소에서 파일들 가져오기
+      const product = {
+        title: $("#title").val(),
+        contents: $("#contents").val(),
+        price: parseInt($("#price").val()),
+        productImages: imageUrls,
+      };
 
-    console.log(files[0]);
-    for (let i = 0; i < files.length; i++) {
-      formData.append("files", files[i]); // FormData에 파일 추가
+      const response = await fetch("http://localhost:8090/products/new", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(product),
+      });
+
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+
+      const data = await response.json();
+      console.log("Product successfully registered:", data);
+      alert("Product successfully registered.");
+      document.getElementById("productForm").reset();
+      document.getElementById("imagePreview").innerHTML = "";
+    } catch (error) {
+      console.error("Failed to register product:", error);
+      alert("Failed to register product. Please try again.");
     }
-    uploadImages();
-    // AJAX 요청
-    // $.ajax({
-    //   url: "http://localhost:8090/products/new",
-    //   type: "POST",
-    //   data: formData,
-    //   contentType: false, // jQuery가 자동으로 Content-Type을 설정하게 함
-    //   processData: false, // jQuery가 데이터를 자동으로 처리하지 않게 함
-    //   success: function (response) {
-    //     console.log("상품이 성공적으로 등록되었습니다:", response);
-    //     alert("상품이 성공적으로 등록되었습니다.");
-    //     $("#productForm")[0].reset(); // 폼 리셋
-    //     $("#imagePreview").empty(); // 이미지 미리보기 초기화
-
-    //   },
-    //   error: function (xhr, status, error) {
-    //     console.error("상품 등록 실패:", error);
-    //     console.error("상태:", status);
-    //     console.error("응답:", xhr.responseText); // 에러 메시지 출력
-    //     alert("상품 등록에 실패했습니다. 다시 시도해주세요.");
-    //   },
-    // });
   });
 
   // 가격 입력 필드에 숫자만 입력되도록 처리
