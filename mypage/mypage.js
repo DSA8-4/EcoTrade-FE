@@ -1,24 +1,39 @@
-// 로그인 상태 확인 및 사용자 정보 요청
 function checkLoginStatus() {
-  fetch("http://localhost:8090/members/mypage", {
-    method: "GET",
-  })
+  const loggedInUser = sessionStorage.getItem("loggedInUser");
+  if (!loggedInUser) {
+    // 세션 스토리지에 로그인 정보가 없으면 로그인 페이지로 리디렉션
+    window.location.href = "/login";
+    return;
+  }
+
+  const member_id = JSON.parse(sessionStorage.getItem("loggedInUser"));
+  fetch(
+    `http://localhost:8090/members/mypage?member_id=${member_id.member_id}`,
+    {
+      method: "GET",
+    }
+  )
     .then((response) => {
       if (response.ok) {
         return response.json();
       } else {
-        // 로그인되지 않은 경우
-
         return Promise.reject("로그인 필요");
       }
     })
     .then((data) => {
       updateDisplay(data); // 사용자 정보로 화면 업데이트
     })
+
     .catch((error) => {
       console.error("오류 발생:", error);
+      if (error === "로그인 필요") {
+        window.location.href = "/login"; // 로그인 페이지로 리디렉션
+      }
     });
 }
+
+// 페이지 로드시 로그인 상태 확인
+checkLoginStatus();
 
 // 화면에 사용자 정보 표시
 function updateDisplay(data) {
@@ -35,9 +50,6 @@ function updateDisplay(data) {
     data.name
   }님의 에코포인트는 ${data.eco_point || 0}입니다.`;
 }
-
-// 페이지 로드시 로그인 상태 확인
-checkLoginStatus();
 
 // 프로필 수정 버튼 클릭 시
 document.getElementById("editProfileButton").addEventListener("click", () => {
@@ -150,29 +162,31 @@ document
     const confirmNewPassword =
       document.getElementById("confirmNewPassword").value;
 
+    if (newPassword !== confirmNewPassword) {
+      alert("새 비밀번호와 비밀번호 확인이 일치하지 않습니다.");
+      return;
+    }
+
     // 비밀번호 업데이트 요청
-    fetch(
-      `http://localhost:8090/members/password/${
-        document.getElementById("member_id").textContent
-      }`,
-      {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          currentPassword: currentPassword,
-          newPassword: newPassword,
-          confirmNewPassword: confirmNewPassword,
-        }),
-      }
-    )
+    const member_id = JSON.parse(
+      sessionStorage.getItem("loggedInUser")
+    ).member_id;
+    fetch(`http://localhost:8090/members/password`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        currentPassword: currentPassword,
+        newPassword: newPassword,
+        confirmNewPassword: confirmNewPassword, // confirmNewPassword 추가
+      }),
+    })
       .then((response) => {
-        if (response.ok) {
-          return response.json();
-        } else {
-          throw new Error("비밀번호 수정 실패");
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
         }
+        return response.json();
       })
       .then((data) => {
         if (data.message === "비밀번호가 성공적으로 변경되었습니다.") {

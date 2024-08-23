@@ -78,6 +78,14 @@ button:hover {
   background-color: #219150;
 }
 
+#transactionHistoryButton {
+  background-color: #1dc942;
+}
+
+#transactionHistoryButton:hover {
+  background-color: #36ac4f;
+}
+
 /* 수정 버튼 스타일 */
 #editProfileButton {
   background-color: #3498db;

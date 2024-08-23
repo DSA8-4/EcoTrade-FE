@@ -5,12 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>마이 페이지</title>
     <link rel="stylesheet" href="mypage.css" />
+    <script src="getMemberIdFromSession.js"></script>
     <script src="./mypage.js" defer></script>
   </head>
   <body>
     <div class="container">
       <h1 id="welcomeMessage"></h1>
 
+      <!-- 거래내역 버튼 -->
+      <div class="info-box">
+        <a href="history/index.html" id="transactionHistoryButton">
+          <button>거래내역</button>
+        </a>
+      </div>
       <!-- 회원 ID (수정 불가능) -->
       <div class="info-box">
         <strong>Member ID:</strong> <span id="member_id"></span>
