@@ -19,7 +19,8 @@ document.addEventListener("DOMContentLoaded", function () {
       // 프로필 사진 및 환영 메시지 설정
       if (userInfo) userInfo.style.display = "flex"; // 사용자 정보 영역 보이기
       if (welcomeMessage) {
-        welcomeMessage.textContent = `${loggedInUser}님 환영합니다.`; // 환영 메시지 설정
+        const loggedInUserobject = JSON.parse(loggedInUser);
+        welcomeMessage.textContent = `${loggedInUserobject.nickname}님`; // 환영 메시지 설정
         // welcomeMessage.style.display = "block"; // 메시지 표시
         welcomeMessage.style.color = "black";
       }
@@ -32,15 +33,6 @@ document.addEventListener("DOMContentLoaded", function () {
       if (welcomeMessage) welcomeMessage.style.display = "none"; // 메시지 숨기기
     }
   }
-
-  // 로그인 버튼 클릭 시
-  // if (loginButton) {
-  //   loginButton.addEventListener("click", function () {
-  //     // const userId = "member_id"; // 실제 사용자 ID를 가져오는 로직 필요
-  //     sessionStorage.setItem("loggedInUser", userId); // 사용자 ID 저장
-  //     checkLoginStatus(); // 로그인 상태 재확인
-  //   });
-  // }
 
   // // 로그아웃 버튼 클릭 시
   if (logoutButton) {

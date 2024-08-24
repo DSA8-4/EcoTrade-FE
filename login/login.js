@@ -43,7 +43,7 @@ function loginMember(loginData) {
       if (data.success) {
         alert("로그인되었습니다.");
         clearForm();
-        handleLoginSuccess(loginData);
+        handleLoginSuccess(data);
       } else {
         alert("로그인에 실패했습니다: " + data.message);
       }
@@ -60,6 +60,9 @@ function clearForm() {
 }
 
 function handleLoginSuccess(userData) {
-  sessionStorage.setItem("loggedInUser", JSON.stringify(userData));
+  sessionStorage.setItem(
+    "loggedInUser",
+    JSON.stringify({ nickname: userData.name })
+  );
   window.location.href = "http://127.0.0.1:5500";
 }
