@@ -4,18 +4,32 @@
   font-family: Arial, sans-serif;
 } */
 
-.main-header {
+/* .main-header {
   background-color: #ffffff;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-}
+  padding: 16px;
+} */
 
 .header-content {
-  max-width: 1024px;
+  max-width: 1145px;
   margin: 0 auto;
-  padding: 16px;
+  padding: 13px;
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  /* 수평 정렬 */
+  margin-left: 10px;
+  /* 여백 추가하여 공간 확보 */
+}
+
+.user-info img {
+  margin-right: 10px;
+  /* 이미지와 텍스트 사이 여백 */
 }
 
 .logo {
@@ -27,6 +41,7 @@
   padding: 0;
   margin: 0;
   display: flex;
+
 }
 
 .main-nav li {
@@ -45,17 +60,19 @@
 } */
 
 .search input {
-  padding: 0.9rem 25px;
+  padding: 0.9rem 45px;
   background-color: #e9ecef;
   border: none;
   border-radius: 0.6rem;
-  margin-right: 8px;
+  margin-left: 8px;
 }
 
-/* .user {
+.user {
   display: flex;
   align-items: center;
-} */
+  margin-left: -3px;
+  margin-right: -9px;
+}
 
 .chat-button {
   padding: 0.5rem 20px;
@@ -67,8 +84,8 @@
   cursor: pointer;
 }
 
-.login-link,
-.logout-link {
+
+.login-link {
   text-decoration: none;
   color: #4b4848;
   font-weight: bold;
@@ -76,7 +93,7 @@
 }
 
 .logout-link {
-  margin-left: 40px;
+  margin-left: 45px;
   color: #4b4848;
   font-weight: bold;
   text-decoration: none;
@@ -89,7 +106,9 @@
   color: #4b4848;
   font-weight: bold;
   margin-left: 20px;
+  margin-right: 6px;
 }
+
 
 body {
   margin: 0;

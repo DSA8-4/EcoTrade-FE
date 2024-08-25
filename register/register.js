@@ -65,5 +65,6 @@ function displayMemberInfo(member) {
     <p><strong>생일:</strong> ${member.birthday}</p>
     <p><strong>이메일:</strong> ${member.email}</p>
   `;
+  document.body.appendChild(resultDiv); // 결과를 페이지에 추가
   window.location.href = "http://127.0.0.1:5500";
 }
