@@ -66,7 +66,7 @@ button {
   display: inline-block;
   padding: 10px 20px;
   font-size: 16px;
-  color: #fff;
+  color: #ffffff;
   border: none;
   border-radius: 5px;
   cursor: pointer;
@@ -78,12 +78,14 @@ button:hover {
   background-color: #219150;
 }
 
-#transactionHistoryButton {
-  background-color: #1dc942;
+/* 거래내역 버튼 스타일 */
+#transactionHistoryButton button {
+  background-color: #f39c12; /* 거래내역 버튼의 배경색을 원하는 색상으로 설정 */
+  color: #fff; /* 텍스트 색상 */
 }
 
-#transactionHistoryButton:hover {
-  background-color: #36ac4f;
+#transactionHistoryButton button:hover {
+  background-color: #e67e22; /* 호버 시 배경색 변경 */
 }
 
 /* 수정 버튼 스타일 */
@@ -138,4 +140,25 @@ button:hover {
 
 #deleteAccountButton:hover {
   background-color: #c0392b;
+}
+
+/* 메인 화면으로 돌아가기 링크 스타일 */
+.back-to-main {
+  margin-bottom: 20px; /* 하단 여백 추가 */
+  text-align: center; /* 중앙 정렬 */
+}
+
+.back-to-main button {
+  background-color: #10a729;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+
+.back-to-main button:hover {
+  background-color: #1b7213;
 }
