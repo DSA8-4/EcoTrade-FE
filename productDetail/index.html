@@ -1,107 +1,25 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>상품 상세 페이지</title>
-    <link rel="stylesheet" href="productDetailpage.css" />
-    <script src="./index.js" defer></script>
+    <title>Product Detail</title>
+    <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <header class="main-header">
-      <div class="header-content">
-        <div class="logo">
-          <a href="/"> <img src="#" alt="로고" /> </a>
-        </div>
-        <nav class="main-nav">
-          <ul>
-            <li><a href="#">홈</a></li>
-            <li><a href="#">마이페이지</a></li>
-            <li><a href="#">카테고리</a></li>
-            <li><a href="#">추천상품 </a></li>
-            <li><a href="#">EcoPoint란?</a></li>
-          </ul>
-        </nav>
-        <div class="search">
-          <input type="text" placeholder="상품명 검색" value="" />
-        </div>
-        <div class="user">
-          <button type="button" class="chat-button">채팅하기</button>
-          <a id="loginButton" class="login-link" href="login">로그인</a>
-          <a id="logoutButton" class="logout-link" style="display: none"
-            >로그아웃</a
-          >
-          <a id="registerButton" class="register-link" href="register"
-            >회원가입</a
-          >
-        </div>
-        <div class="user-info" style="display: none">
-          <img
-            id="profilePicture"
-            src="/images/profile-icon.png"
-            alt="프로필"
-            style="
-              width: 40px;
-              height: 40px;
-              border-radius: 50%;
-              margin-right: 10px;
-            "
-          />
-          <div id="welcomeMessage" style="display: inline"></div>
-        </div>
-      </div>
-    <div class="product-container">
-      <div class="product-image">
-        <img src="https://via.placeholder.com/" alt="상품 이미지" />
-      </div>
-      <div class="product-info">
-        <h1 class="product-title">상품명</h1>
-        <div class="product-price">15,000 <span>원</span></div>
-        <div class="product-firstdetails">
-          <div style="height: 18px"></div>
-          <div class="product-contents">
-            <div class="product-status" style="padding-left: 5px">
-              <span>·</span>
-              <span>상품 상태 :</span>
-            </div>
-            <div style="height: 18px"></div>
-            <div class="product-size" style="padding-left: 5px">
-              <span>·</span>
-              <span>사이즈 :</span>
-            </div>
-            <div style="height: 18px"></div>
-            <div class="product-time" style="padding-left: 5px">
-              <span>·</span>
-              <span>작성시간 :</span>
-            </div>
-            <div style="height: 18px"></div>
-            <div class="product-location" style="padding-left: 5px">
-              <span>·</span>
-              <span>거래지역 :</span>
-            </div>
-            <div style="height: 18px"></div>
-            <div class="product-category" style="padding-left: 5px">
-              <span>·</span>
-              <span>카테고리 :</span>
-            </div>
-          </div>
-          <div class="product-seconddetails"></div>
-          <h3 style="padding-left: 5px">상품 정보</h3>
-          <p class="product-description" style="padding-left: 5px">
-            상품에 대한 상세 설명 공간입니다. 여기서 추가적인 상품 정보를 입력할
-            수 있습니다. 예를 들어, 크기, 색상, 사용 여부 등의 정보가 포함될 수
-            있습니다.
-          </p>
-        </div>
-        <div class="button-group" style="padding-left: 5px">
-          <button class="button favorite-button">
-            <span>❤ 찜</span>
-            <span>1</span>
-          </button>
-          <button class="button contact-button">채팅하기</button>
-          <button class="button buy-button">바로구매</button>
-        </div>
-      </div>
+    <div class="container">
+      <h1 id="product-title">Loading...</h1>
+      <div id="product-images"></div>
+      <p id="product-contents"></p>
+      <p><strong>Price:</strong> $<span id="product-price"></span></p>
+      <p><strong>Hits:</strong> <span id="product-hits"></span></p>
+      <p><strong>Hearts:</strong> <span id="product-hearts"></span></p>
+      <p>
+        <strong>Created Time:</strong> <span id="product-created-time"></span>
+      </p>
+      <p><strong>Posted by:</strong> <span id="product-member"></span></p>
     </div>
+
+    <script src="script.js"></script>
   </body>
 </html>
