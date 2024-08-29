@@ -1,101 +1,61 @@
 function checkLoginStatus() {
   const loggedInUser = sessionStorage.getItem("loggedInUser");
   if (!loggedInUser) {
-    // 세션 스토리지에 로그인 정보가 없으면 로그인 페이지로 리디렉션
+    console.log("로그인 정보가 없음, 로그인 페이지로 리디렉션");
     window.location.href = "/login";
     return;
   }
 
-  const member_id = JSON.parse(sessionStorage.getItem("loggedInUser"));
-  fetch(
-    `http://localhost:8090/members/mypage?member_id=${member_id.member_id}`,
-    {
-      method: "GET",
-    }
-  )
+  const userData = JSON.parse(loggedInUser);
+  const token = sessionStorage.getItem("token");
+
+  console.log(
+    "요청 URL:",
+    `http://localhost:8090/members/mypage?member_id=${member_id}`
+  );
+  console.log("요청 헤더:", `Bearer ${token}`);
+
+  fetch(`http://localhost:8090/members/mypage?member_id=${member_id}`, {
+    method: "GET",
+    headers: {
+      Authorization: `Bearer ${token}`, // 토큰을 헤더에 포함
+    },
+  })
     .then((response) => {
-      if (response.ok) {
-        return response.json();
-      } else {
-        return Promise.reject("로그인 필요");
-      }
+      console.log("응답 상태 코드:", response.status);
+      return response.json();
     })
     .then((data) => {
-      updateDisplay(data); // 사용자 정보로 화면 업데이트
+      console.log("응답 데이터:", data);
+      updateDisplay(data);
     })
-
     .catch((error) => {
       console.error("오류 발생:", error);
-      if (error === "로그인 필요") {
-        window.location.href = "/login"; // 로그인 페이지로 리디렉션
-      }
+      window.location.href = "/login";
     });
 }
 
-// 페이지 로드시 로그인 상태 확인
-checkLoginStatus();
-
-// 화면에 사용자 정보 표시
-function updateDisplay(data) {
-  document.getElementById(
-    "welcomeMessage"
-  ).textContent = `Eco Trade에 어서오세요, ${data.name}님!`;
-  document.getElementById("member_id").textContent = data.member_id;
-  document.getElementById("nameDisplay").textContent = data.name;
-  document.getElementById("birthDisplay").textContent = new Date(
-    data.birth
-  ).toLocaleDateString();
-  document.getElementById("emailDisplay").textContent = data.email;
-  document.getElementById("ecoPointInfo").textContent = `${
-    data.name
-  }님의 에코포인트는 ${data.eco_point || 0}입니다.`;
-}
-
-// 프로필 수정 버튼 클릭 시
-document.getElementById("editProfileButton").addEventListener("click", () => {
-  document.getElementById("nameInput").value =
-    document.getElementById("nameDisplay").textContent;
-  document.getElementById("birthInput").value =
-    document.getElementById("birthDisplay").textContent;
-  document.getElementById("emailInput").value =
-    document.getElementById("emailDisplay").textContent;
-
-  document.getElementById("nameDisplay").style.display = "none";
-  document.getElementById("birthDisplay").style.display = "none";
-  document.getElementById("emailDisplay").style.display = "none";
-
-  document.getElementById("nameInputContainer").style.display = "block";
-  document.getElementById("birthInputContainer").style.display = "block";
-  document.getElementById("emailInputContainer").style.display = "block";
-
-  document.getElementById("saveProfileButton").style.display = "inline-block";
-  document.getElementById("cancelProfileButton").style.display = "inline-block";
-  document.getElementById("editProfileButton").style.display = "none";
-});
+// checkLoginStatus();
 
 // 프로필 저장 버튼 클릭 시
 document.getElementById("saveProfileButton").addEventListener("click", () => {
   const newName = document.getElementById("nameInput").value;
   const newBirth = document.getElementById("birthInput").value;
   const newEmail = document.getElementById("emailInput").value;
+  const memberId = document.getElementById("member_id").textContent;
 
-  // 사용자 정보 업데이트 요청
-  fetch(
-    `http://localhost:8090/members/${
-      document.getElementById("member_id").textContent
-    }`,
-    {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        name: newName,
-        birth: newBirth,
-        email: newEmail,
-      }),
-    }
-  )
+  fetch(`http://localhost:8090/members/${memberId}`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${sessionStorage.getItem("token")}`, // 토큰을 헤더에 포함
+    },
+    body: JSON.stringify({
+      name: newName,
+      birth: newBirth,
+      email: newEmail,
+    }),
+  })
     .then((response) => {
       if (response.ok) {
         return response.json();
@@ -106,7 +66,7 @@ document.getElementById("saveProfileButton").addEventListener("click", () => {
     .then((data) => {
       if (data.message === "회원 정보가 성공적으로 변경되었습니다.") {
         updateDisplay({
-          member_id: document.getElementById("member_id").textContent,
+          member_id: memberId,
           name: newName,
           birth: newBirth,
           email: newEmail,
@@ -137,7 +97,6 @@ document.getElementById("saveProfileButton").addEventListener("click", () => {
       console.error("정보 수정 오류:", error);
     });
 });
-
 // 프로필 수정 취소 버튼 클릭 시
 document.getElementById("cancelProfileButton").addEventListener("click", () => {
   document.getElementById("nameInputContainer").style.display = "none";
