@@ -83,14 +83,23 @@ function showMessage(message) {
     messageElement.classList.add("left");
   }
 
+  // 현재 시간 구하기
+  var date = new Date(message.timestamp);
+  var hours = date.getHours();
+  var period = hours >= 12 ? "오후" : "오전";
+  hours = hours % 12 || 12;
+  var minutes = date.getMinutes();
+  var formattedTime =
+    period + " " + hours + ":" + (minutes < 10 ? "0" + minutes : minutes);
+
   messageElement.innerHTML =
     "<strong>" +
     message.sender +
     "</strong>: " +
     message.content +
-    " <em>(" +
-    message.timestamp +
-    ")</em>";
+    " <span class='time'>" +
+    formattedTime +
+    "</span>";
   chatBox.appendChild(messageElement);
   chatBox.scrollTop = chatBox.scrollHeight;
 }
