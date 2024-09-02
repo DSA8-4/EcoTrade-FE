@@ -20,7 +20,7 @@ document.addEventListener("DOMContentLoaded", function () {
       if (userInfo) userInfo.style.display = "flex"; // 사용자 정보 영역 보이기
       if (welcomeMessage) {
         const loggedInUserobject = JSON.parse(loggedInUser);
-        welcomeMessage.textContent = `${loggedInUserobject.nickname}님`; // 환영 메시지 설정
+        welcomeMessage.textContent = `${loggedInUserobject.name}님`; // 환영 메시지 설정
         // welcomeMessage.style.display = "block"; // 메시지 표시
         welcomeMessage.style.color = "black";
       }
