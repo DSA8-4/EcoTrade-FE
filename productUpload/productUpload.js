@@ -12,6 +12,7 @@ const storage = getStorage(app);
 
 let fileItems = [];
 
+// 파일 선택 시 이미지 미리보기
 document
   .getElementById("files")
   .addEventListener("change", (e) => changeImage(e));
@@ -21,6 +22,7 @@ const changeImage = (e) => {
   console.log("Selected files:", fileItems);
 };
 
+// 이미지 업로드
 const uploadImages = () => {
   const uploadPromises = fileItems.map((fileItem) => {
     const storageRef = ref(storage, "images/" + fileItem.name);
@@ -29,7 +31,7 @@ const uploadImages = () => {
     return new Promise((resolve, reject) => {
       uploadTask.on(
         "state_changed",
-        (snapshot) => {},
+        () => {},
         (error) => {
           console.error("Upload failed:", error);
           reject(error);
@@ -52,28 +54,41 @@ $(document).ready(function () {
     e.preventDefault();
 
     try {
+      // 이미지 업로드
       const imageUrls = await uploadImages();
       console.log("All files uploaded. URLs:", imageUrls);
+
+      // 카테고리 값 확인
+      const category = $("#category").val();
+      console.log("Selected category:", category);
 
       const product = {
         title: $("#title").val(),
         contents: $("#contents").val(),
-        price: parseInt($("#price").val()),
+        price: parseInt($("#price").val(), 10),
+        category: category, // 선택된 카테고리 값
         productImages: imageUrls,
       };
 
+      console.log("Product data:", product);
+
       const response = await fetch("http://localhost:8090/products/new", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer your_jwt_token_here", // JWT 토큰 필요 시
+        },
         body: JSON.stringify(product),
       });
 
       if (!response.ok) {
-        throw new Error("Network response was not ok");
+        const errorText = await response.text();
+        throw new Error(
+          `Network response was not ok: ${response.status} - ${errorText}`
+        );
       }
 
       const data = await response.json();
-      console.log("Product successfully registered:", data);
       alert("Product successfully registered.");
       document.getElementById("productForm").reset();
       document.getElementById("imagePreview").innerHTML = "";
@@ -83,12 +98,10 @@ $(document).ready(function () {
     }
   });
 
-  // 가격 입력 필드에 숫자만 입력되도록 처리
   $("#price").on("input", function () {
     this.value = this.value.replace(/[^0-9]/g, "");
   });
 
-  // 글자 수 제한 (상품명: 30자, 상품 설명: 제한 없음)
   $("#title").on("input", function () {
     let maxLength = 30;
     if (this.value.length > maxLength) {
@@ -96,15 +109,14 @@ $(document).ready(function () {
     }
   });
 
-  // 이미지 미리보기 기능
   $("#files").on("change", function (e) {
-    $("#imagePreview").empty(); // 기존 미리보기 삭제
+    $("#imagePreview").empty();
     let files = e.target.files;
     for (let i = 0; i < files.length; i++) {
       let file = files[i];
       if (!file.type.startsWith("image/")) {
         continue;
-      } // 이미지 파일만 처리
+      }
 
       let reader = new FileReader();
       reader.onload = (function (file) {
