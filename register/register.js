@@ -4,14 +4,14 @@ document.addEventListener("DOMContentLoaded", function () {
     const member_id = document.getElementById("member_id").value;
     const password = document.getElementById("password").value;
     const name = document.getElementById("name").value;
-    const birthday = document.getElementById("birth").value;
+    // const birthday = document.getElementById("birth").value;
     const email = document.getElementById("email").value;
 
     const newMember = {
       member_id,
       password,
       name,
-      birthday,
+      // birthday,
       email,
     };
 
@@ -49,7 +49,7 @@ function clearForm() {
   document.getElementById("member_id").value = "";
   document.getElementById("name").value = "";
   document.getElementById("password").value = "";
-  document.getElementById("birth").value = "";
+  // document.getElementById("birth").value = "";
   document.getElementById("email").value = "";
 }
 
@@ -62,7 +62,6 @@ function displayMemberInfo(member) {
     <p><strong>아이디:</strong> ${member.member_id}</p>
     <p><strong>패스워드:</strong> ${member.password}</p>
     <p><strong>닉네임:</strong> ${member.name}</p>
-    <p><strong>생일:</strong> ${member.birthday}</p>
     <p><strong>이메일:</strong> ${member.email}</p>
   `;
   document.body.appendChild(resultDiv); // 결과를 페이지에 추가

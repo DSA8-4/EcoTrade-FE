@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>마이 페이지</title>
     <link rel="stylesheet" href="mypage.css" />
-    <script src="getMemberIdFromSession.js"></script>
+    <script src="./getMemberIdFromSession.js"></script>
     <script src="./mypage.js" defer></script>
   </head>
   <body>
@@ -26,24 +26,15 @@
       </div>
       <!-- 회원 ID (수정 불가능) -->
       <div class="info-box">
-        <strong>Member ID:</strong> <span id="member_id"></span>
+        <strong>아이디:</strong> <span id="member_id"></span>
       </div>
 
       <!-- 이름 -->
       <div class="info-box">
-        <strong>Name:</strong>
+        <strong>닉네임:</strong>
         <span id="nameDisplay"></span>
         <div id="nameInputContainer" style="display: none">
           <input type="text" id="nameInput" />
-        </div>
-      </div>
-
-      <!-- 생일 -->
-      <div class="info-box">
-        <strong>Birth Date:</strong>
-        <span id="birthDisplay"></span>
-        <div id="birthInputContainer" style="display: none">
-          <input type="date" id="birthInput" />
         </div>
       </div>
 

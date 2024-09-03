@@ -59,5 +59,6 @@ function handleLoginSuccess(userData) {
     JSON.stringify({ name: userData.name }) // 사용자 이름을 세션 스토리지에 저장
   );
   sessionStorage.setItem("token", userData.token); // JWT 토큰을 세션 스토리지에 저장
+  sessionStorage.setItem("member_id", userData.member_id); // member_id를 세션 스토리지에 저장
   window.location.href = "/"; // 로그인 후 마이페이지로 이동
 }
